@@ -21,6 +21,9 @@ module AttributeNormalizer
         define_method "normalize_#{attribute}" do |value|
           normalized = value
 
+          options[:attribute_name] = attribute
+          options[:model] = self
+
           normalizers.each do |normalizer_name|
             unless normalizer_name.kind_of?(Symbol)
               normalizer_name, options = normalizer_name.keys[0], normalizer_name[ normalizer_name.keys[0] ]
